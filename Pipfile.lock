@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "83f5e21f228415bad01420d5858ecc4ad82578f505c0055ec3a1d63f15677a8a"
+            "sha256": "2e8467de80cf2a5811ac082f0ffcb5a14f39313083e07648a1bb2709772eca40"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -95,7 +95,6 @@
             "hashes": [
                 "sha256:16ff3be1fb5d215c56ec378714b126f4ec6214741aeb92b22c7ac0f8165be35e"
             ],
-            "index": "pypi",
             "version": "==0.6.4"
         },
         "markupsafe": {
@@ -106,15 +105,15 @@
         },
         "osm-humanized-opening-hours": {
             "editable": true,
-            "git": "https://github.com/amatissart/humanized_opening_hours.git",
-            "ref": "10f94d76db76a2d071da246f2c9227719be83aab"
+            "git": "https://github.com/rezemika/humanized_opening_hours.git",
+            "ref": "65ab008d206c7ed9bab55a535d127b0f1afa2443"
         },
         "prometheus-client": {
             "hashes": [
-                "sha256:3e45bc729444144071d237b2fa7af8ef1a78a73ac60f9cdc1dfa92b451f224f4"
+                "sha256:2c0ddba8b9dc5e06de7578a7b25e4becafd6880e6d727bc0a73f8d826c1b0112"
             ],
             "index": "pypi",
-            "version": "==0.4.0"
+            "version": "==0.4.1"
         },
         "pybreaker": {
             "hashes": [
