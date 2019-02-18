@@ -271,43 +271,43 @@ def test_opening_hour_sunrise_sunset():
                 "dayofweek": 1,
                 "local_date": "2018-06-25",
                 "status": "open",
-                "opening_hours": [{"beginning": "03:46", "end": "21:18"}]
+                "opening_hours": [{"beginning": "03:45", "end": "21:19"}]
             },
             {
                 "dayofweek": 2,
                 "local_date": "2018-06-26",
                 "status": "open",
-                "opening_hours": [{"beginning": "03:46", "end": "21:18"}]
+                "opening_hours": [{"beginning": "03:46", "end": "21:19"}]
             },
             {
                 "dayofweek": 3,
                 "local_date": "2018-06-27",
                 "status": "open",
-                "opening_hours": [{"beginning": "03:47", "end": "21:18"}]
+                "opening_hours": [{"beginning": "03:46", "end": "21:19"}]
             },
             {
                 "dayofweek": 4,
                 "local_date": "2018-06-28",
                 "status": "open",
-                "opening_hours": [{"beginning": "03:48", "end": "21:18"}]
+                "opening_hours": [{"beginning": "03:47", "end": "21:19"}]
             },
             {
                 "dayofweek": 5,
                 "local_date": "2018-06-29",
                 "status": "open",
-                "opening_hours": [{"beginning": "03:48", "end": "21:18"}]
+                "opening_hours": [{"beginning": "03:47", "end": "21:19"}]
             },
             {
                 "dayofweek": 6,
                 "local_date": "2018-06-30",
                 "status": "open",
-                "opening_hours": [{"beginning": "03:49", "end": "21:18"}]
+                "opening_hours": [{"beginning": "03:48", "end": "21:18"}]
             },
             {
                 "dayofweek": 7,
                 "local_date": "2018-07-01",
                 "status": "open",
-                "opening_hours": [{"beginning": "03:50", "end": "21:17"}]
+                "opening_hours": [{"beginning": "03:49", "end": "21:18"}]
             },
         ]
     )
@@ -372,7 +372,6 @@ def test_opening_hour_24_7():
     )
 
 @freeze_time("2019-02-10T11:00:00+03:00")
-@pytest.mark.skip(reason="fail until hoh issue 26 is fixed")
 def test_opening_hour_2_years():
     """
     Opening_hours span over 2 years without explicit years.
@@ -383,7 +382,7 @@ def test_opening_hour_2_years():
         status='open',
         next_transition_datetime='2019-02-10T19:30:00+03:00',
         seconds_before_next_transition=30600,
-        is_24_7=True,
+        is_24_7=False,
         raw='Oct-Mar 07:30-19:30; Apr-Sep 07:00-21:00',
         days=ANY
     )
