@@ -1,11 +1,13 @@
-from apistar import types, validators
+from apistar import validators
 from idunn.blocks.base import BlocksValidator
 from idunn.api.utils import LONG, BLOCKS_BY_VERBOSITY
+from idunn.utils.types import BaseType
 
-class PlaceMeta(types.Type):
+
+class PlaceMeta(BaseType):
     source = validators.String(allow_null=True)
 
-class Place(types.Type):
+class Place(BaseType):
     type = validators.String()
     id = validators.String(allow_null=True)
     name = validators.String(allow_null=True)

@@ -2,13 +2,14 @@ import os
 import logging
 from elasticsearch import Elasticsearch
 from apistar.exceptions import BadRequest
+from multiprocessing import Pool
 
 from idunn import settings
 from idunn.utils.settings import Settings, _load_yaml_file
 from idunn.utils.index_names import IndexNames
 from idunn.places import POI
 from idunn.api.utils import fetch_bbox_places, DEFAULT_VERBOSITY_LIST, ALL_VERBOSITY_LEVELS
-from .pages_jaunes import pj_source
+from .pages_jaunes import pj_source, PjPOI
 
 from apistar import http
 
@@ -108,7 +109,10 @@ def get_raw_params(query_params):
         )
     return raw_params
 
-def get_places_bbox(bbox, es: Elasticsearch, indices: IndexNames, settings: Settings, query_params: http.QueryParams):
+def load_place(place, lang, verbosity):
+    return place.load_place(lang, verbosity)
+
+def get_places_bbox(es: Elasticsearch, indices: IndexNames, query_params: http.QueryParams):
     raw_params = get_raw_params(query_params)
     try:
         params = PlacesQueryParam(**raw_params)
@@ -146,6 +150,17 @@ def get_places_bbox(bbox, es: Elasticsearch, indices: IndexNames, settings: Sett
         )
         places_list = [POI(p['_source']) for p in bbox_places]
 
+    if len(places_list) >= 20:
+        with Pool(processes=4) as pool:
+            places = pool.starmap(
+                load_place,
+                ((p, params.lang, params.verbosity) for p in places_list),
+                chunksize=5
+            )
+    else:
+        places = [load_place(p, params.lang, params.verbosity) for p in places_list]
+
     return {
-        "places": [p.load_place(params.lang, params.verbosity) for p in places_list]
+        "places": places,
+        "source": source
     }

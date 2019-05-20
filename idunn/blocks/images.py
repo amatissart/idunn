@@ -5,8 +5,9 @@ import posixpath
 import urllib.parse
 from urllib.parse import urlsplit, unquote
 
-from apistar import types, validators
+from apistar import validators
 from idunn import settings
+from idunn.utils.types import BaseType
 from .base import BaseBlock
 
 logger = logging.getLogger(__name__)
@@ -55,7 +56,7 @@ class ThumbrHelper:
         return base_url + "/" + size + "/" + hashURLpart + "/" + filename + "?" + params
 
 
-class Image(types.Type):
+class Image(BaseType):
     url = validators.String()
     alt = validators.String()
     credits = validators.String(default="")

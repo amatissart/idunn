@@ -1,6 +1,8 @@
-from apistar import types, validators
+from apistar import validators
+from idunn.utils.types import BaseType
 
-class BaseBlock(types.Type):
+
+class BaseBlock(BaseType):
     BLOCK_TYPE = '' # To override in each subclass
 
     type = validators.String()

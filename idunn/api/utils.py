@@ -1,6 +1,7 @@
+import logging
+
 from apistar.exceptions import NotFound, BadRequest
 from elasticsearch import Elasticsearch, ConnectionError, NotFoundError, ElasticsearchException
-import logging
 
 from idunn import settings
 from idunn.blocks import \

@@ -1,10 +1,11 @@
 import logging
 from datetime import datetime, timedelta, date
 from pytz import timezone, UTC
-from apistar import validators, types
+from apistar import validators
 from tzwhere import tzwhere
 import humanized_opening_hours as hoh
 from humanized_opening_hours.exceptions import HOHError
+from idunn.utils.types import BaseType
 
 from .base import BaseBlock
 
@@ -36,11 +37,11 @@ def get_coord(es_poi):
     return None
 
 
-class OpeningHoursType(types.Type):
+class OpeningHoursType(BaseType):
     beginning = validators.String()
     end = validators.String()
 
-class DaysType(types.Type):
+class DaysType(BaseType):
     dayofweek = validators.Integer(minimum=1, maximum=7)
     local_date = validators.Date()
     status = validators.String(enum=['open', 'closed'])

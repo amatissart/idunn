@@ -1,4 +1,5 @@
-from apistar import types, validators
+from apistar import validators
+from idunn.utils.types import BaseType
 from .base import BaseBlock, BlocksValidator
 
 
@@ -73,7 +74,7 @@ class InternetAccessBlock(BaseBlock):
         return cls(wifi=has_wifi)
 
 
-class Beer(types.Type):
+class Beer(BaseType):
     name = validators.String()
 
 
