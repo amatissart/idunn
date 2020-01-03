@@ -16,10 +16,7 @@ def dummy_limit():
     yield
 
 
-class HTTPTooManyRequests(HTTPException):
-    default_status_code = 429
-    default_detail = 'Too Many Requests'
-
+HTTPTooManyRequests = HTTPException(status_code=429)
 
 class IdunnRateLimiter:
     def __init__(self, resource, max_requests, expire):
