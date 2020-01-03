@@ -10,6 +10,9 @@ from starlette.responses import PlainTextResponse
 from starlette.routing import Mount
 
 from starlette_prometheus import PrometheusMiddleware
+from pydantic.json import ENCODERS_BY_TYPE
+
+from datetime import datetime, timezone
 
 import uvicorn
 
@@ -22,6 +25,13 @@ routes = [
 
 app = FastAPI(routes=routes, title="Idunn", debug=__name__ == '__main__')
 
+# Set custom datetime format for datetime
+def custom_isoformat(dt):
+    if dt.tzinfo == timezone.utc:
+        return dt.isoformat().replace('+00:00', 'Z')
+    return dt.isoformat()
+
+ENCODERS_BY_TYPE[datetime] = custom_isoformat
 
 @app.middleware("http")
 async def db_session_middleware(request: Request, call_next):
